@@ -4,7 +4,7 @@ This is the new-room app, created as a team project for the GW University Full-S
 
 * The app is deployed to [Heroku](https://ancient-river-63990.herokuapp.com/)
 
-## Getting up and Running
+## Getting Started
 Open you command line interface and execute the following commands:
 1. ```git clone git@github.com:bradotron/news-room.git```
 2. ```cd news-room```
