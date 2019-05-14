@@ -12,6 +12,12 @@ const testUser = {
 };
 
 class Home extends Component {
+  state = {
+    user: {},
+    articles: [],
+    category: "",
+  }
+
 	render() {
 		return (
 			<div>
@@ -27,7 +33,7 @@ class Home extends Component {
         <Category />
 
         {/* News Feed */}
-        <NewsFeed />
+        <NewsFeed category={this.state.category} articles={this.state.articles}/>
 			</div>
 		);
 	}
