@@ -9,7 +9,6 @@ function App() {
 		<div className="container">
 			<Router>
 				<div>
-					<hr />
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route component={NoMatch} />
