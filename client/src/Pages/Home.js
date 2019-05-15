@@ -7,20 +7,22 @@ import Search from '../Components/Search';
 import Category from '../Components/Category';
 import NewsFeed from '../Components/NewsFeed';
 
+import searchApi from '../Utils/searchApi';
+
 const testUser = {
 	username: 'bob',
 };
 
 class Home extends Component {
-  state = {
-    user: {},
-    articles: [],
-    category: "",
-  }
+	state = {
+		user: {},
+		articles: [],
+		category: '',
+	};
 
-  searchNews = search => {
-    console.log(search);
-  }
+	searchNews = search => {
+		searchApi.searchNYT(search).then(res => console.log(res));
+	};
 
 	render() {
 		return (
@@ -31,13 +33,13 @@ class Home extends Component {
 				{/* Profile ***will need to pass the user as a prop */}
 				<Profile user={testUser} />
 
-        {/* Search Bar */}
-        <Search sendSearchUp={this.searchNews}/>
-        {/* Category Drop-Down */}
-        <Category />
+				{/* Search Bar */}
+				<Search sendSearchUp={this.searchNews} />
+				{/* Category Drop-Down */}
+				<Category />
 
-        {/* News Feed */}
-        <NewsFeed category={this.state.category} articles={this.state.articles}/>
+				{/* News Feed */}
+				<NewsFeed category={this.state.category} articles={this.state.articles} />
 			</div>
 		);
 	}
