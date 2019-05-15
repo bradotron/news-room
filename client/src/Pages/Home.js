@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Logo from '../Components/Logo';
 import Profile from '../Components/Profile';
 import Search from '../Components/Search';
+import SearchResults from '../Components/SearchResults'
 import Category from '../Components/Category';
 import NewsFeed from '../Components/NewsFeed';
 
@@ -17,11 +18,22 @@ class Home extends Component {
 	state = {
 		user: {},
 		articles: [],
-		category: '',
+		categorySelector: '',
+		searching: false,
+		searchResults: [],
 	};
 
 	searchNews = search => {
-		searchApi.searchNYT(search).then(res => console.log(res));
+		this.setState({
+			searching: true,
+		});
+		searchApi.searchNYT(search).then(res => {
+			this.setState({
+        searchResults: res,
+        searching: false
+      });
+      
+		});
 	};
 
 	render() {
@@ -35,6 +47,7 @@ class Home extends Component {
 
 				{/* Search Bar */}
 				<Search sendSearchUp={this.searchNews} />
+        <SearchResults articles={this.state.searchResults} />
 				{/* Category Drop-Down */}
 				<Category />
 
