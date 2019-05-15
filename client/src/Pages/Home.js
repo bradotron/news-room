@@ -18,6 +18,10 @@ class Home extends Component {
     category: "",
   }
 
+  searchNews = search => {
+    console.log(search);
+  }
+
 	render() {
 		return (
 			<div>
@@ -28,7 +32,7 @@ class Home extends Component {
 				<Profile user={testUser} />
 
         {/* Search Bar */}
-        <Search />
+        <Search sendSearchUp={this.searchNews}/>
         {/* Category Drop-Down */}
         <Category />
 
