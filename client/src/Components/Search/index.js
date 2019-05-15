@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './style.css';
 
 class Search extends Component {
 	state = {
@@ -31,9 +32,15 @@ class Search extends Component {
 		return (
 			<div className="row justify-content-center align-items-center">
 				<form>
-					<label className="my-0">
+					<label className="my-auto mx-1">
 						Search:
 						<input type="text" name="search" value={this.state.search} onChange={this.onInputChange} />
+					</label>
+					<label className="my-0">
+						Source:
+						<select className="form-control select-fix">
+							<option>New York Times</option>
+						</select>
 					</label>
 					<button className="btn btn-sm btn-primary" onClick={this.onFormSubmit} type="submit">
 						Search
