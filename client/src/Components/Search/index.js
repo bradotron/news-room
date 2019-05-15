@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function Search(props) {
-  return <div>search</div>;
+class Search extends Component {
+  state = {
+    search: "",
+  }
+  
+	render() {
+		return <div>search</div>;
+	}
 }
-
 export default Search;
