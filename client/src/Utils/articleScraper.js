@@ -7,17 +7,43 @@ export default {
 		var articles = [];
 
 		// Now, we grab every h2 within an article tag, and do the following:
-		$('ol li').each(function(i, element) {
-      console.log(this);
+		$('ol li').each(function(i, el) {
+			// console.log(this);
 			// Save an empty result object
-			var result = {};
 
-			// Add the text and href of every link, and save them as properties of the result object
-			result.title = $(this)
-				.children('h4')
-				.text();
+			if ($(el).attr('data-testid')) {
+				var result = {};
 
-			articles.push(result);
+				const anchor = $(el).find('a');
+				// Title
+				$(anchor)
+					.find('h4')
+					.each((i, el) => {
+						result.title = $(el).text();
+					});
+				// image
+				$(el)
+					.find('img')
+					.each((i, el) => {
+						result.image = $(el).attr('src');
+					});
+				// summary
+				$(anchor)
+					.find('p')
+					.each((i, el) => {
+						result.summary = $(el).text();
+					});
+				// source
+				result.source = `nytimes`;
+				// article url
+				result.url = `https://www.nytimes.com/${$(anchor).attr('href')}`;
+
+				if (result.title) {
+					articles.push(result);
+				}
+			} else {
+				console.log('not an article');
+			}
 		});
 
 		return articles;
