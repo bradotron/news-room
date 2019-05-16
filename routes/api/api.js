@@ -3,7 +3,7 @@ var router = express.Router();
 
 // mongoose is our ODM
 var mongoose = require("mongoose");
-var db = require("../models");
+var db = require("../../models");
 
 // Connect to the Mongo DB
 var MONGODB_URI =
