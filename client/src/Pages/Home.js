@@ -51,7 +51,7 @@ class Home extends Component {
 	saveArticle = article => {
 		articlesApi.postArticle(article).then(res => {
 			console.log(res.status);
-		})
+		});
 	}
 
 	render() {
