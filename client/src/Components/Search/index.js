@@ -3,7 +3,8 @@ import './style.css';
 
 class Search extends Component {
 	state = {
-		search: '',
+    search: '',
+    category: 'New York Times'
 	};
 
 	onInputChange = e => {
@@ -20,7 +21,7 @@ class Search extends Component {
 			this.props.sendSearchUp(this.state.search);
 		} else {
 			//console.log('bad form');
-			alert('Please input some terms (authors, titles, subjects) to search for.');
+			alert('Please input some terms to search for.');
 		}
 	};
 
@@ -36,10 +37,11 @@ class Search extends Component {
 						Search:
 						<input type="text" name="search" value={this.state.search} onChange={this.onInputChange} />
 					</label>
-					<label className="my-0">
+					<label className="my-auto mx-1">
 						Source:
-						<select className="form-control select-fix">
-							<option>New York Times</option>
+						<select name="category" onChange={this.onInputChange} value={this.state.category} className="form-control select-fix">
+							<option value="New York Times">New York Times</option>
+							<option value="NPR">NPR</option>
 						</select>
 					</label>
 					<button className="btn btn-sm btn-primary" onClick={this.onFormSubmit} type="submit">
