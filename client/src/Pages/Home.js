@@ -9,6 +9,7 @@ import Category from '../Components/Category';
 import NewsFeed from '../Components/NewsFeed';
 
 import searchApi from '../Utils/searchApi';
+import articlesApi from '../Utils/articlesApi';
 
 const testUser = {
 	username: 'bob',
@@ -48,7 +49,9 @@ class Home extends Component {
 	};
 
 	saveArticle = article => {
-		console.log(article);
+		articlesApi.postArticle(article).then(res => {
+			console.log(res.status);
+		})
 	}
 
 	render() {

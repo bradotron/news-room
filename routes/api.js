@@ -17,10 +17,17 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(err, res) {
   }
 });
 
-// get route to return all books in the database
+// test route to see if the back end is happy
 router.get('/test', function(req, res, next) {
   res.json({
     test: "you have received data from the back end /test"
+  });
+});
+
+router.post('/articles', function(req, res, next) {
+  console.log(req.body);
+  res.json({
+    message: "you hit the /api/articles POST route"
   });
 });
 
