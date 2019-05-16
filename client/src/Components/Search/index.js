@@ -18,7 +18,7 @@ class Search extends Component {
 
 		if (this.validateForm()) {
 			//console.log('good form');
-			this.props.sendSearchUp(this.state.search);
+			this.props.sendSearchUp(this.state.search, this.state.category);
 		} else {
 			//console.log('bad form');
 			alert('Please input some terms to search for.');

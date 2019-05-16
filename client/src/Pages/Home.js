@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Logo from '../Components/Logo';
 import Profile from '../Components/Profile';
 import Search from '../Components/Search';
-import SearchResults from '../Components/SearchResults'
+import SearchResults from '../Components/SearchResults';
 import Category from '../Components/Category';
 import NewsFeed from '../Components/NewsFeed';
 
@@ -23,18 +23,33 @@ class Home extends Component {
 		searchResults: [],
 	};
 
-	searchNews = search => {
+	searchNews = (search, category) => {
 		this.setState({
 			searching: true,
 		});
-		searchApi.searchNYT(search).then(res => {
-			this.setState({
-        searchResults: res,
-        searching: false
-      });
-      
-		});
+		switch (category) {
+			default:
+				alert('Error: Unknown category.');
+				break;
+
+			case 'New York Times':
+				searchApi.searchNYT(search).then(res => {
+					this.setState({
+						searchResults: res,
+						searching: false,
+					});
+				});
+				break;
+			
+			case 'NPR':
+			alert('NPR search is under construction');
+			break;
+		}
 	};
+
+	saveArticle = article => {
+		console.log(article);
+	}
 
 	render() {
 		return (
@@ -47,7 +62,7 @@ class Home extends Component {
 
 				{/* Search Bar */}
 				<Search sendSearchUp={this.searchNews} />
-        <SearchResults articles={this.state.searchResults} />
+				<SearchResults articles={this.state.searchResults} saveArticle={this.saveArticle} />
 				{/* Category Drop-Down */}
 				<Category />
 
