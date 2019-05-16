@@ -5,6 +5,9 @@ var router = express.Router();
 var mongoose = require("mongoose");
 var db = require("../../models");
 
+// import the scraping middleware
+var scrape = require("../middleware/scrape");
+
 // Connect to the Mongo DB
 var MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost/newsRoom";
@@ -29,6 +32,22 @@ router.post('/articles', function(req, res, next) {
   res.json({
     message: "you hit the /api/articles POST route"
   });
+});
+
+router.get('/scrape/:source/:search', function(req, res, next) {
+  switch(req.params.source) {
+    default: 
+      console.log("invalid source: " + req.params.source);
+      res.sendStatus(400);
+      break;
+
+    case "New York Times":
+      scrape.searchNYT(req.params.search).then(data => {
+        res.json(data)
+      }).catch(err => {
+        res.sendStatus(500);
+      });
+  }
 });
 
 module.exports = router;

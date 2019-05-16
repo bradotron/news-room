@@ -1,8 +1,7 @@
-import axios from 'axios';
-// cheerio is our scraping tool
-import cheerio from 'cheerio';
+var axios = require('axios');
+var cheerio = require('cheerio');
 
-export default {
+module.exports = {
 	searchNYT: function(search) {
 		return new Promise(function(resolve, reject) {
 			axios(`https://www.nytimes.com/search?query=${search}&sort=newest`)
