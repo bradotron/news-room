@@ -43,7 +43,9 @@ class Home extends Component {
 
   saveArticle = article => {
     articlesApi.postArticle(article).then(res => {
-      console.log(res.status);
+      alert("Article saved to the news feed.");
+    }).catch(err => {
+      alert("Error: Article is already in the news feed...NO REPOSTS");
     });
   };
 
