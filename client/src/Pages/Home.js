@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 
 // import the components
-import Logo from "../Components/Logo";
+//import Logo from "../Components/Logo";
 import Profile from "../Components/Profile";
 import Search from "../Components/Search";
 import SearchResults from "../Components/SearchResults";
@@ -49,12 +49,14 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        {/* Logo */}
-        <Logo />
+    <div className="container-fluid" >
+ 
+        {/* Logo  <Logo />*/}
+       
 
         {/* Profile ***will need to pass the user as a prop */}
         <Profile user={testUser} />
+ 
 
         {/* Search Bar */}
         <Search sendSearchUp={this.searchNews} />
@@ -70,6 +72,7 @@ class Home extends Component {
           category={this.state.category}
           articles={this.state.articles}
         />
+      
       </div>
     );
   }
