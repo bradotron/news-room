@@ -13,12 +13,18 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");//???????redundant?
 
+<<<<<<< HEAD
 
 
 
 var app = express();
 
 
+=======
+// create the app object
+var app = express();
+
+>>>>>>> 0c04a4a8721a6e49cffd2dc4deb40269c529c0f5
 // Passport middleware
 app.use(passport.initialize());
 
@@ -28,14 +34,16 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-app.use("/api/users", users);//???????redundant?
 
 // Passport config
 require("./config/passport")(passport);
 
 //=====================================passport:==============================//
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0c04a4a8721a6e49cffd2dc4deb40269c529c0f5
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

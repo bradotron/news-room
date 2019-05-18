@@ -5,6 +5,10 @@ var router = express.Router();
 var mongoose = require("mongoose");
 var db = require("../../models");
 
+// import the users router
+var usersRouter = require("./users");
+router.use("/users", usersRouter);
+
 // import the scraping middleware
 var scrape = require("../middleware/scrape");
 
@@ -29,8 +33,12 @@ router.get('/test', function(req, res, next) {
 
 router.post('/articles', function(req, res, next) {
   console.log(req.body);
-  res.json({
-    message: "you hit the /api/articles POST route"
+  db.Article.create(req.body).then(dbArticle => {
+    console.log(`created an article: `);
+    console.log(dbArticle);
+    res.status(200).json(dbArticle);
+  }).catch(err => {
+    res.status(400).json(err);
   });
 });
 
