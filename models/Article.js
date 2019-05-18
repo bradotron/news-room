@@ -10,7 +10,7 @@ var articleSchema = new Schema({
 
   image: {
     type: String,
-  }
+  },
 
   summary: {
     type: String,
@@ -23,16 +23,16 @@ var articleSchema = new Schema({
 
   source: {
     type: String,
-  }
+  },
 
   comments: [{ 
     type: Schema.Types.ObjectId,
     ref: "Comment"
-  }]
+  }],
 
   thumbsUps: {
     type: Number,
-  }
+  },
 
   thumbsDowns: {
     type: Number,
