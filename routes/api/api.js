@@ -5,6 +5,10 @@ var router = express.Router();
 var mongoose = require("mongoose");
 var db = require("../../models");
 
+// import the users router
+var usersRouter = require("./users");
+router.use("/users", usersRouter);
+
 // import the scraping middleware
 var scrape = require("../middleware/scrape");
 
