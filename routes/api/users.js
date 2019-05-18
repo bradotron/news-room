@@ -63,11 +63,13 @@ router.post('/register', (req, res) => {
 // @desc Login user and return JWT token
 // @access Public
 router.post('/login', (req, res) => {
+	//console.log("***login***");
 	// Form validation
 	const { errors, isValid } = validateLoginInput(req.body);
 
 	// Check validation
 	if (!isValid) {
+		//console.log("input is not valid");
 		return res.status(400).json(errors);
 	}
 
@@ -76,9 +78,11 @@ router.post('/login', (req, res) => {
 
 	// Find user by email
 	User.findOne({ email }).then(user => {
+		//console.log("user was found");
+		//console.log("user");
 		// Check if user exists
 		if (!user) {
-			return res.status(404).json({ emailnotfound: 'Email not found' });
+			return res.status(400).json({ emailnotfound: 'Email not found' });
 		}
 
 		// Check password
@@ -94,7 +98,7 @@ router.post('/login', (req, res) => {
 				// Sign token
 				jwt.sign(
 					payload,
-					keys.secretOrKey,
+					"secret",
 					{
 						expiresIn: 31556926, // 1 year in seconds
 					},
@@ -106,7 +110,7 @@ router.post('/login', (req, res) => {
 					}
 				);
 			} else {
-				return res.status(400).json({ passwordincorrect: 'Password incorrect' });
+				return res.json({ passwordincorrect: 'Password incorrect' });
 			}
 		});
 	});
