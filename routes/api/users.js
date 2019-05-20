@@ -14,11 +14,11 @@ const User = require('../../models/User');
 // @route Get api/users
 // @desc get all users
 // @access authenticated
-router.get('/', (req, res) => {
-	User.find()
-		.sort({ date: -1 })
-		.then(users => res.json(users));
-});
+// router.get('/', (req, res) => {
+// 	User.find()
+// 		.sort({ date: -1 })
+// 		.then(users => res.json(users));
+// });
 
 // @route POST api/users/register
 // @desc Register user
@@ -70,7 +70,10 @@ router.post('/login', (req, res) => {
 	// Check validation
 	if (!isValid) {
 		//console.log("input is not valid");
-		return res.status(400).json(errors);
+		return res.status(200).json({
+			success: false,
+			error: 'Invalid Inputs: Enter an email address and password.',
+		});
 	}
 
 	const email = req.body.email;
@@ -82,7 +85,10 @@ router.post('/login', (req, res) => {
 		//console.log("user");
 		// Check if user exists
 		if (!user) {
-			return res.status(400).json({ emailnotfound: 'Email not found' });
+			return res.status(200).json({
+				success: false,
+				error: 'User Not Found',
+			});
 		}
 
 		// Check password
@@ -98,19 +104,26 @@ router.post('/login', (req, res) => {
 				// Sign token
 				jwt.sign(
 					payload,
-					"secret",
+					'secret',
 					{
-						expiresIn: 31556926, // 1 year in seconds
+						expiresIn: 86400, // 1 day in seconds
 					},
 					(err, token) => {
 						res.json({
 							success: true,
+							user: {
+								name: user.name,
+								email: user.email,
+							},
 							token: 'Bearer ' + token,
 						});
 					}
 				);
 			} else {
-				return res.json({ passwordincorrect: 'Password incorrect' });
+				return res.status(200).json({
+					success: false,
+					error: 'Incorrect Password',
+				});
 			}
 		});
 	});
