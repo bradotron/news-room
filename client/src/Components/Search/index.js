@@ -35,7 +35,7 @@ class Search extends Component {
 		return (
 			<Container>
 				<form>
-					<Row style={{ border: 'solid grey 2px', marginTop: '30px', borderRadius: '10px 10px 0 0' }}>
+					<Row className="container-fluid" style={{ border: 'solid grey 2px', marginTop: '30px', borderRadius: '10px 10px 0 0'}}>
 						<Col xs={12} md={5}>
 							<label className="my-auto mx-1">
 								Search:
@@ -50,7 +50,7 @@ class Search extends Component {
 						<Col xs={12} md={3}>
 							<label className="my-auto mx-1">
 								Source:
-								<select
+								<select 
 									name="category"
 									onChange={this.onInputChange}
 									value={this.state.category}
@@ -77,7 +77,7 @@ class Search extends Component {
 							</button>
 						</Col>
 						<Col xs={12} md={2}>
-							<Link to="/" className="btn-flat waves-effect">
+							<Link to="/archive" className="btn-flat waves-effect light-blue-text">
 								<i className="material-icons right">arrow_forward_ios</i>Archive
 							</Link>
 						</Col>

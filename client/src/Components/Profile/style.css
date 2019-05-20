@@ -1,4 +1,4 @@
-.select-fix {
-    width: auto;
-    display: inline-block;
-  }
+p.username {
+  border:"2px";
+  margin-bottom:"2px";
+}

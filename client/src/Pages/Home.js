@@ -3,11 +3,11 @@ import axios from 'axios';
 
 // import the components
 //import Logo from "../Components/Logo";
-import Profile from '../Components/Profile';
-import Search from '../Components/Search';
-import SearchResults from '../Components/SearchResults';
-import Category from '../Components/Category';
-import NewsFeed from '../Components/NewsFeed';
+import Profile from "../Components/Profile";
+import Search from "../Components/Search";
+import SearchResults from "../Components/SearchResults";
+import Category from "../Components/Category";
+import NewsFeed from "../Components/Savednews";
 
 import articlesApi from '../Utils/articlesApi';
 
@@ -68,8 +68,8 @@ class Home extends Component {
 				{/* Category Drop-Down */}
 				<Category />
 
-				{/* News Feed */}
-				<NewsFeed category={this.state.category} articles={this.state.articles} />
+				{/* News Feed 
+				<NewsFeed category={this.state.category} articles={this.state.articles} />*/}
 			</div>
 		);
 	}
