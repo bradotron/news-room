@@ -10,10 +10,7 @@ import auth from './Utils/authUtils';
 
 class App extends Component {
 	state = {
-		user: {
-			email: "",
-		},
-		
+		user: {},	
 	};
 
 	onLogin = (user, cb) => {

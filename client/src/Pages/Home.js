@@ -60,7 +60,7 @@ class Home extends Component {
 				{/* Logo  <Logo />*/}
 
 				{/* Profile ***will need to pass the user as a prop */}
-				<Profile user={this.state.user} onLogout={this.props.onLogout} />
+				<Profile user={this.props.user} onLogout={this.props.onLogout} />
 
 				{/* Search Bar */}
 				<Search sendSearchUp={this.searchNews} />
