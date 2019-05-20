@@ -8,11 +8,7 @@ const opts = {};
 //var secretOrKey = "secret";
 
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-<<<<<<< HEAD
-opts.secretOrKey = "secret";
-=======
 opts.secretOrKey = "secret"; //keys.secretOrKey;
->>>>>>> 0c04a4a8721a6e49cffd2dc4deb40269c529c0f5
 
 module.exports = passport => {
   passport.use(

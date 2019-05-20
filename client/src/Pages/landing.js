@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 class Landing extends Component {
 	render() {
 		return (
-			<div style={{ height: '50vh' }} className="container valign-wrapper">
+			<div style={{ height: '50vh' }} className="container-fluid valign-wrapper">
 				<div className="row">
 					<div className="col s12 center-align">
 						<h3>
-							<b style={{ color: 'red', fontSize: '45px' }}>News Room</b>
-							{'   '}
-							<span style={{ fontFamily: 'monospace' }}>The Peoples Choice for News</span>
+							<b style={{ color: 'red', fontSize: '54px' }}>News Room {'  '}</b>
+							
+							<span style={{ fontFamily: 'monospace', fontSize: '48px' }}>  The Peoples Choice for News</span>
 						</h3>
 						<br />
 
@@ -22,7 +22,7 @@ class Landing extends Component {
 									borderRadius: '3px',
 									letterSpacing: '1.5px',
 								}}
-								className="btn btn-large waves-effect waves-light hoverable red accent-3"
+								className="btn btn-small waves-effect waves-light hoverable red accent-3"
 							>
 								{' '}
 								Register
@@ -38,7 +38,7 @@ class Landing extends Component {
 									borderRadius: '3px',
 									letterSpacing: '1.5px',
 								}}
-								className="btn btn-large waves-effect white hoverable black-text"
+								className="btn btn-small waves-effect white hoverable black-text"
 							>
 								{' '}
 								Log In

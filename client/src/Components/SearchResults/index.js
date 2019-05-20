@@ -36,12 +36,12 @@ class SearchResults extends Component {
 						<Col>
 							{this.state.expanded && (
 								<button
-									className="btn btn-small waves-effect waves-light hoverable light accent-3"
+									className="btn btn-small waves-effect waves-light hoverable dark accent-3"
+									id="hide-show"
 									name="collapse"
 									onClick={this.onCollapseClick}
 								>
 									{this.state.expanded ? 'Hide Search Results' : 'Show Search Results'}
-									<i className="format_list_bulleted">arrow_forward_ios</i>
 								</button>
 							)}
 						</Col>
