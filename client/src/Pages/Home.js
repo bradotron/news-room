@@ -50,6 +50,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
     <div className="container-fluid" >
  
@@ -57,7 +58,7 @@ class Home extends Component {
        
 
         {/* Profile ***will need to pass the user as a prop */}
-        <Profile user={testUser} />
+        <Profile user={testUser} onLogout={this.props.onLogout}/>
  
 
         {/* Search Bar */}

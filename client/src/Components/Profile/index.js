@@ -22,6 +22,7 @@ function Profile(props) {
 					<hr />
 					Username {props.user.username}
 					<button
+						onClick={props.onLogout}
 						style={{
 							width: '125px',
 							borderRadius: '3px',
