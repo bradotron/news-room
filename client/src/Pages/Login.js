@@ -9,19 +9,28 @@ class Login extends Component {
 			password: '',
 			errors: {},
 		};
+		this.loginCallback = this.loginCallback.bind(this);
 	}
 	onChange = e => {
 		this.setState({ [e.target.id]: e.target.value });
 	};
 
 	onSubmit = e => {
-		e.preventDefault();
-		const userData = {
-			email: this.state.email,
+    e.preventDefault();
+    this.props.onLogin({
+      email: this.state.email,
 			password: this.state.password,
-		};
-		console.log(userData);
+    }, this.loginCallback);
 	};
+
+	loginCallback = function(res) {
+		if(res.login) {
+			// redirect to home page
+			this.props.history.push('/');
+		} else {
+			alert(res.error);
+		}
+	}
 
 	render() {
 		const { errors } = this.state;

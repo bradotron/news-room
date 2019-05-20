@@ -18,12 +18,21 @@ function Profile(props) {
 				</Col>
 
 				<Col xs={12} md={3} />
+<<<<<<< HEAD
 				<Col xs={12} md={2} style={{textAlign:"center"}}>
 					<img src="https://via.placeholder.com/100" alt="" style={{ borderRadius: '80px', marginBottom:"4px", display:"inline-block" }} />
 					
 					<p className="username" style={{marginBottom:"0px"}}>Username {props.user.username}</p>
 					
+=======
+				<Col xs={12} md={2} style={{ justifyItems: 'right' }}>
+					<img src="https://via.placeholder.com/100" alt="" style={{ borderRadius: '80px' }} />
+					<hr />
+					<p>Name: {props.user.name}</p>
+					<p>Email: {props.user.email}</p>
+>>>>>>> origin
 					<button
+						onClick={props.onLogout}
 						style={{
 							width: '125px',
 							float:"center",
