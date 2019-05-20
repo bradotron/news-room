@@ -10,8 +10,10 @@ import auth from './Utils/authUtils';
 
 class App extends Component {
 	state = {
-		userEmail: '',
-		token: {},
+		user: {
+			email: "",
+		},
+		
 	};
 
 	onLogin = (user, cb) => {
@@ -21,7 +23,9 @@ class App extends Component {
 				if (res.data.success) {
 					auth.setToken(res.data.token);
 					this.setState({
-						userEmail: user.email,
+						user: {
+							email: user.email,
+						},
 					});
 					cb({
 						login: true,
@@ -40,8 +44,8 @@ class App extends Component {
 	};
 
 	onLogout = () => {
-		console.log('logout');
 		auth.logout();
+		window.location.reload();
 	};
 
 	render() {
@@ -57,7 +61,7 @@ class App extends Component {
 
 						<Switch>
 							{auth.loggedIn() ? (
-								<Route exact path="/" render={props => <Home {...props} onLogout={this.onLogout} />} />
+								<Route exact path="/" render={props => <Home {...props} user={this.state.user} onLogout={this.onLogout} />} />
 							) : (
 								<Route exact path="/" component={Landing} />
 							)}
