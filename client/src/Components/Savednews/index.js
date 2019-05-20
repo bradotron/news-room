@@ -25,11 +25,11 @@ class Savednews extends Component {
 							Full Article
 						</a>
 					
-					<div class="row" style={{ border: 'solid grey 1px' }}>
+					<div className="row" style={{ border: 'solid grey 1px' }}>
 					<form>
-          			<div class="input-field col s12" style={{ border: 'solid grey 1px', }}>
-            			<textarea id="textarea" class="materialize-textarea" data-length="500"></textarea>
-            			<label for="textarea">Comment</label>
+          			<div className="input-field col s12" style={{ border: 'solid grey 1px', }}>
+            			<textarea id="textarea" className="materialize-textarea" data-length="500"></textarea>
+            			<label htmlFor="textarea">Comment</label>
 						</div>
 						<button className="btn btn-primary" style={{ float: 'right'}}>
 						comment

@@ -59,7 +59,7 @@ class Archive extends Component {
     <div className="container-fluid" >
  
         {/* Profile ***will need to pass the user as a prop */}
-        <Profile user={testUser} />
+        <Profile user={testUser} onLogout={this.props.onLogout} />
  
         {/* Search Bar 
         <Search sendSearchUp={this.searchNews} />*/}

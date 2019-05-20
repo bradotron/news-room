@@ -3,19 +3,11 @@ import axios from 'axios';
 
 // import the components
 //import Logo from "../Components/Logo";
-<<<<<<< HEAD
 import Profile from "../Components/Profile";
 import Search from "../Components/Search";
 import SearchResults from "../Components/SearchResults";
 import Category from "../Components/Category";
 import NewsFeed from "../Components/Savednews";
-=======
-import Profile from '../Components/Profile';
-import Search from '../Components/Search';
-import SearchResults from '../Components/SearchResults';
-import Category from '../Components/Category';
-import NewsFeed from '../Components/NewsFeed';
->>>>>>> origin
 
 import articlesApi from '../Utils/articlesApi';
 
@@ -76,22 +68,11 @@ class Home extends Component {
 				{/* Category Drop-Down */}
 				<Category />
 
-<<<<<<< HEAD
-        {/* News Feed 
-        <NewsFeed
-          category={this.state.category}
-          articles={this.state.articles}*/}
-      
-      </div>
-    );
-  }
-=======
-				{/* News Feed */}
-				<NewsFeed category={this.state.category} articles={this.state.articles} />
+				{/* News Feed 
+				<NewsFeed category={this.state.category} articles={this.state.articles} />*/}
 			</div>
 		);
 	}
->>>>>>> origin
 }
 
 export default Home;

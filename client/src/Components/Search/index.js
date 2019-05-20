@@ -77,7 +77,7 @@ class Search extends Component {
 							</button>
 						</Col>
 						<Col xs={12} md={2}>
-							<Link to="/saved" className="btn-flat waves-effect light-blue-text">
+							<Link to="/archive" className="btn-flat waves-effect light-blue-text">
 								<i className="material-icons right">arrow_forward_ios</i>Archive
 							</Link>
 						</Col>
