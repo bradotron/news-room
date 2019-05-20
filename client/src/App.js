@@ -24,7 +24,8 @@ class App extends Component {
 					auth.setToken(res.data.token);
 					this.setState({
 						user: {
-							email: user.email,
+							name: res.data.user.name,
+							email: res.data.user.email,
 						},
 					});
 					cb({

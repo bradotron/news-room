@@ -14,11 +14,11 @@ const User = require('../../models/User');
 // @route Get api/users
 // @desc get all users
 // @access authenticated
-router.get('/', (req, res) => {
-	User.find()
-		.sort({ date: -1 })
-		.then(users => res.json(users));
-});
+// router.get('/', (req, res) => {
+// 	User.find()
+// 		.sort({ date: -1 })
+// 		.then(users => res.json(users));
+// });
 
 // @route POST api/users/register
 // @desc Register user
@@ -111,6 +111,10 @@ router.post('/login', (req, res) => {
 					(err, token) => {
 						res.json({
 							success: true,
+							user: {
+								name: user.name,
+								email: user.email,
+							},
 							token: 'Bearer ' + token,
 						});
 					}

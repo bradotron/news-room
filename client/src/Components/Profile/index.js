@@ -20,7 +20,8 @@ function Profile(props) {
 				<Col xs={12} md={2} style={{ justifyItems: 'right' }}>
 					<img src="https://via.placeholder.com/100" alt="" style={{ borderRadius: '80px' }} />
 					<hr />
-					Username {props.user.email}
+					<p>Name: {props.user.name}</p>
+					<p>Email: {props.user.email}</p>
 					<button
 						onClick={props.onLogout}
 						style={{
