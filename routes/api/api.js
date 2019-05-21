@@ -65,6 +65,18 @@ router.get('/protected', checkToken, function(req, res, next) {
   });
 });
 
+router.get('/articles', function(req, res, next) {
+	//console.log(req);
+	//res.send(200);
+	db.Article.find({}).then(dbArticle => {
+		res.status(200).json(dbArticle);
+	})
+	.catch(err => {
+		res.status(400).json(err);
+	});
+});
+
+
 router.post('/articles', function(req, res, next) {
 	console.log(req.body);
 	db.Article.create(req.body)
