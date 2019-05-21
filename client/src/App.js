@@ -11,10 +11,7 @@ import auth from './Utils/authUtils';
 
 class App extends Component {
 	state = {
-		user: {
-			email: "",
-		},
-		
+		user: {},
 	};
 
 	onLogin = (user, cb) => {
@@ -45,6 +42,29 @@ class App extends Component {
 			});
 	};
 
+	onRegister = (register, cb) => {
+		auth.register(register)
+			.then(res => {
+				if (res.data.register) {
+					cb({
+						register: true,
+						user: res.data.user,
+					});
+				} else {
+					cb({
+						register: false,
+						error: res.data.error,
+					});
+				}
+			})
+			.catch(err =>
+				cb({
+					register: false,
+					error: err,
+				})
+			);
+	};
+
 	onLogout = () => {
 		auth.logout();
 		window.location.reload();
@@ -64,7 +84,13 @@ class App extends Component {
 
 						<Switch>
 							{auth.loggedIn() ? (
-								<Route exact path="/" render={props => <Home {...props} user={this.state.user} onLogout={this.onLogout} />} />
+								<Route
+									exact
+									path="/"
+									render={props => (
+										<Home {...props} user={this.state.user} onLogout={this.onLogout} />
+									)}
+								/>
 							) : (
 								<Route exact path="/" component={Landing} />
 							)}
@@ -72,7 +98,11 @@ class App extends Component {
 								<Route exact path="/archive" render={props => <Archive {...props} user={this.state.user} onLogout={this.onLogout} />} />
 							) }
 							<Route exact path="/login" render={props => <Login {...props} onLogin={this.onLogin} />} />
-							<Route exact path="/register" component={Register} />
+							<Route
+								exact
+								path="/register"
+								render={props => <Register {...props} onRegister={this.onRegister} />}
+							/>
 							<Route component={NoMatch} />
 						</Switch>
 					</div>
