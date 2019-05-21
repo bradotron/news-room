@@ -8,6 +8,8 @@ import Savednews from "../Components/Savednews";
 import Category from "../Components/Category";
 import NewsFeed from "../Components/Savednews";
 
+import articlesApi from '../Utils/articlesApi';
+
 //import archiveApi from "../Utils/archiveApi";
 
 const testUser = {
@@ -28,31 +30,15 @@ class Archive extends Component {
     searching: false,
     searchResults: []
   };
-/*
-  searchNews = (search, category) => {
-    this.setState({
-      searching: true
-    });
 
-    axios
-      .get(`/api/scrape/${category}/${search}`)
-      .then(res => {
-        // console.log(res.data);
-        this.setState({
-        	searchResults: res.data,
-        	searching: false,
-        });
-      })
-      .catch(err => console.log(err));
-  };
+componentDidMount() {
+  articlesApi.getsavedArticle().then(articles => {
+      this.setState({articles: articles.data});
 
-  saveArticle = article => {
-    articlesApi.postArticle(article).then(res => {
-      console.log(res.status);
-    });
-  };
+  })
+  console.log('testing');
+}
 
-*/
 
   render() {
     return (
@@ -64,7 +50,7 @@ class Archive extends Component {
         {/* Search Bar 
         <Search sendSearchUp={this.searchNews} />*/}
         <Savednews
-          articles={testArticle}
+          articles={this.state.articles}
         />
       
       </div>

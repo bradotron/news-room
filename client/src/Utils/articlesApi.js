@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export default {
-  // getBooks: function() {
-  //   return axios.get("/api/books");
-  // },
+  getsavedArticle: function() {
+    return axios.get("/api/articles");
+  },
 
   postArticle: function(article) {
     return axios.post('/api/articles', article);
