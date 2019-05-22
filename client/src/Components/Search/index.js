@@ -57,7 +57,7 @@ class Search extends Component {
 									className="form-control select-fix"
 								>
 									<option value="New York Times">New York Times</option>
-									<option value="NPR">NPR</option>
+									<option value="Test">Test</option>
 								</select>
 							</label>
 						</Col>
