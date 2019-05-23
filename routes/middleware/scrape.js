@@ -12,6 +12,18 @@ module.exports = {
 		});
 	},
 
+	searchYahoo: function(search) {
+		return new Promise(function(resolve, reject) {
+			axios(
+				`https://news.search.yahoo.com/search?p=${search}&fr=uh3_news_vert_gs&fr2=p%3Anews%2Cm%3Asb&guccounter=1&guce_referrer=aHR0cHM6Ly9uZXdzLnlhaG9vLmNvbS8&guce_referrer_sig=AQAAAAVAUxfLD0T5afOWFLXEB532GVpQWeAyOFo4ThG8JNh2T4fHYDbcCr-i0yRAgOuiuS7L5pYnNxeqYW2hncLxgb2StjQRpKoS-vGRu_u22WVnQJquYgRIVx7mx2PJYkZCrC5Bc7soSe2uQ0yzdxP8RGVuMWwA8GFLHSbn1kkNj2tb`
+			)
+				.then(res => {
+					resolve(scrapeTestResults(res.data));
+				})
+				.catch(err => reject(err));
+		});
+	},
+
 	searchTest: function(search) {
 		return new Promise(function(resolve, reject) {
 			axios(
@@ -67,6 +79,40 @@ const scrapeNytResults = function(data) {
 		} else {
 			console.log('not an article');
 		}
+	});
+
+	return articles;
+};
+
+const scrapeYahooResults = function(data) {
+	var $ = cheerio.load(data);
+	var articles = [];
+	// Now, we grab every article tag, and do the following:
+	$('li div.NewsArticle').each(function(i, el) {
+		let result = {};
+		//let title = '';
+		let anchor = $(el).find('a');
+		// Title
+		result.title = $(anchor).text();
+
+		// // image
+		$(el)
+			.find('img')
+			.each((i, el) => {
+				result.image = $(el).attr('data-src');
+			});
+
+		// // summary
+		result.summary = $(el)
+			.find('p')
+			.text();
+
+		// // source
+		result.source = 'Yahoo';
+		// // article url
+		result.url = $(anchor).attr('href');
+
+		articles.push(result);
 	});
 
 	return articles;

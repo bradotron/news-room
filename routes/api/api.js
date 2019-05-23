@@ -108,6 +108,17 @@ router.get('/scrape/:source/:search', function(req, res, next) {
 				});
 			break;
 
+		case 'Yahoo':
+			scrape
+				.searchYahoo(req.params.search)
+				.then(data => {
+					res.json(data);
+				})
+				.catch(err => {
+					res.status(500).json(err);
+				});
+			break;
+
 		case 'Test':
 			scrape
 				.searchTest(req.params.search)
