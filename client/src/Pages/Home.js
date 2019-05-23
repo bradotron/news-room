@@ -34,7 +34,8 @@ class Home extends Component {
 		axios
 			.get(`/api/scrape/${category}/${search}`)
 			.then(res => {
-				// console.log(res.data);
+				console.log(res.status);
+				console.log(res.data);
 				this.setState({
 					searchResults: res.data,
 					searching: false,

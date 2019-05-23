@@ -62,20 +62,20 @@ router.get('/protected', checkToken, function(req, res, next) {
 			});
 			console.log('SUCCESS: Connected to protected route');
 		}
-  });
+	});
 });
 
 router.get('/articles', function(req, res, next) {
 	//console.log(req);
 	//res.send(200);
-	db.Article.find({}).then(dbArticle => {
-		res.status(200).json(dbArticle);
-	})
-	.catch(err => {
-		res.status(400).json(err);
-	});
+	db.Article.find({})
+		.then(dbArticle => {
+			res.status(200).json(dbArticle);
+		})
+		.catch(err => {
+			res.status(400).json(err);
+		});
 });
-
 
 router.post('/articles', function(req, res, next) {
 	console.log(req.body);
@@ -104,8 +104,31 @@ router.get('/scrape/:source/:search', function(req, res, next) {
 					res.json(data);
 				})
 				.catch(err => {
-					res.sendStatus(500);
+					res.status(500).json(err);
 				});
+			break;
+
+		case 'Yahoo':
+			scrape
+				.searchYahoo(req.params.search)
+				.then(data => {
+					res.json(data);
+				})
+				.catch(err => {
+					res.status(500).json(err);
+				});
+			break;
+
+		case 'Test':
+			scrape
+				.searchTest(req.params.search)
+				.then(data => {
+					res.json(data);
+				})
+				.catch(err => {
+					res.status(500).json(err);
+				});
+			break;
 	}
 });
 
