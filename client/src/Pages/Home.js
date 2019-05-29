@@ -36,7 +36,8 @@ class Home extends Component {
 		axios
 			.get(`/api/scrape/${category}/${search}`)
 			.then(res => {
-				// console.log(res.data);
+				console.log(res.status);
+				console.log(res.data);
 				this.setState({
 					searchResults: res.data,
 					searching: false,
@@ -60,6 +61,7 @@ class Home extends Component {
 		return (
 			<div className="container-fluid">
 				<Profile user={this.state.user} onLogout={this.props.onLogout} />
+
 				<Search sendSearchUp={this.searchNews} />
 				<SearchResults articles={this.state.searchResults} saveArticle={this.saveArticle} />
 			</div>
