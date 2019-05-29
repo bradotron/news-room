@@ -35,7 +35,7 @@ class Search extends Component {
 		return (
 			<Container>
 				<form>
-					<Row className="container-fluid" style={{ border: 'solid grey 2px', marginTop: '30px', borderRadius: '10px 10px 0 0'}}>
+					<Row style={{ border: 'solid grey 2px', marginTop: '30px', borderRadius: '10px 10px 0 0', display:"flex"}}>
 						<Col xs={12} md={5}>
 							<label className="my-auto mx-1">
 								Search:
@@ -47,8 +47,8 @@ class Search extends Component {
 								/>
 							</label>
 						</Col>
-						<Col xs={12} md={3}>
-							<label className="my-auto mx-1">
+						<Col xs={12} md={3} className="category">
+							<label className="category-title">
 								Source:
 								<select 
 									name="category"

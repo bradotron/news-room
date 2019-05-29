@@ -9,7 +9,12 @@ export default {
     return axios.post('/api/articles', article);
   },
 
-  // deleteBook: function(id) {
-  //   return axios.delete(`/api/books/${id}`);
-  // }
+  deleteSavedArt: function(id) {
+    return axios.delete(`/api/articles/${id}`);
+  },
+
+  postComment: function(comment) {
+    console.log("postComment: ", comment);
+    return axios.post('/api/comments', comment);
+  }
 };

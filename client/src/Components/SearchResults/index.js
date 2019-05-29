@@ -15,7 +15,7 @@ class SearchResults extends Component {
 
 	render() {
 		return (
-			<Container style={{ border: 'solid grey 1px', borderRadius: '0 0 10px 10px' }}>
+			<Container style={{ border: 'solid grey 8px', borderRadius: '0 0 10px 10px' }}>
 				{this.props.articles.length > 0 && (
 					<Row>
 						<Col>

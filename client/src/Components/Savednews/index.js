@@ -1,99 +1,60 @@
 import React, { Component } from 'react';
-import Article from '../Article';
+import ArticleSaved from '../ArticleSaved';
 import { Container, Row, Col } from 'react-grid-system';
+import StockTicker from "../StockTicker";
 
 class Savednews extends Component {
+	state = {
+		expanded: true,
+	};
 
-render() {
-	return (
-		<Container style={{ border: 'solid grey 1px', borderRadius: '0 0 10px 10px' }}>
-		
-			{this.props.articles.map(article => { 
-			return (
-				<Row>
-				<Col xs={12} md={3} style={{ border: 'solid grey 1px' }}>
-				{article.image === '' ? (
-					<p>No Image available</p>
-					) : (
-						<div className="img-wrapper">
-							<img className="h-100" src={article.image} alt={article.title} />
-						</div>
-					)}
-				</Col>
-				<div className="col-sm-9">
-					<h4>{article.title}</h4>
-					<p>{article.summary}</p>
-					<a className="mr-auto" href={article.url} rel="noopener noreferrer" target="_blank">
-							Full Article
-						</a>
-					
-					<div className="row" style={{ border: 'solid grey 1px' }}>
-					<form>
-          			<div className="input-field col s12" style={{ border: 'solid grey 1px', }}>
-            			<textarea id="textarea" className="materialize-textarea" data-length="500"></textarea>
-            			<label htmlFor="textarea">Comment</label>
-						</div>
-						<button className="btn btn-primary" style={{ float: 'right'}}>
-						comment
-						</button>
-					</form>
-        		</div>
-				</div>
+	onCollapseClick = () => {
+		this.setState({
+			expanded: !this.state.expanded,
+		});
+	};
 
-				
-				
-				
-				</Row>
+	render() {
+		return (
+			<Container style={{ border: 'solid #DDDDDD 1px', borderRadius: '5px', margin:"20px 0 40px 0" }}>
+					<StockTicker></StockTicker>
+					<hr/>
+				{this.props.articles.length > 0 && (
+					<Row>
+						<Col>
+							<button
+								className="btn btn-small waves-effect waves-light hoverable grey accent-3"
+								name="collapse"
+								onClick={this.onCollapseClick}
+							>
+								{this.state.expanded ? 'Hide Archive' : 'Show Archive'}
+							</button>
+						</Col>
 
+						{this.state.expanded &&
+							this.props.articles.map(article => {
+								return <ArticleSaved article={article} delete={this.props.delete} comment = {this.props.comment}/>;
+							})}
 
-
-
-
-				
-
-				)
-						
-			})}
-
-
-
-
-			{/*<div className="row p-3 m-2 bg-light rounded">
-			<Col xs={12} md={3} style={{ border: 'solid grey 1px' }}>
-				{this.props.articles.image === '' ? (
-					<p>No Image available</p>
-					) : (
-						<div className="img-wrapper">
-							<img className="h-100" src={this.props.articles.image} alt={this.props.title} />
-						</div>
-					)}
-			</Col>
-				<div className="col-sm-9">
-					<h4>{this.props.articles.title}</h4>
-					<p>{this.props.articles.summary}</p>
-					<a className="mr-auto" href={this.props.articles.url} rel="noopener noreferrer" target="_blank">
-							Full Article
-						</a>
-					
-					<div className="row" style={{ border: 'solid grey 1px' }}>
-					<form>
-          			<div className="input-field col s12" style={{ border: 'solid grey 1px', }}>
-            			<textarea id="textarea" className="materialize-textarea" data-length="500"></textarea>
-            			<label htmlFor="textarea">Comment</label>
-						</div>
-						<button className="btn btn-primary" style={{ float: 'right'}}>
-						comment
-						</button>
-					</form>
-        		</div>
-				</div>
-					</div>*/}
-			
-			
-		
+						<Col>
+							{this.state.expanded && (
+								<button
+									className="btn btn-small waves-effect waves-light hoverable grey accent-3"
+									id="hide-show"
+									name="collapse"
+									onClick={this.onCollapseClick}
+								>
+									{this.state.expanded ? 'Hide Archive' : 'Show Archive'}
+								</button>
+							)}
+						</Col>
+					</Row>
+				)}
 			</Container>
 		);
 	}
 }
+
 export default Savednews;
+
 

@@ -7,11 +7,11 @@ var logger = require('morgan');
 var apiRouter = require('./routes/api/api');
 
 
-//=======================Stefan Authentication:===============================//
+
 const bodyParser = require("body-parser");
 //====================================passport:===============================//
 const passport = require("passport");
-const users = require("./routes/api/users");//???????redundant?
+const users = require("./routes/api/users");
 
 // create the app object
 var app = express();
