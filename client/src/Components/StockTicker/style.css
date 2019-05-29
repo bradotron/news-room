@@ -1,0 +1,28 @@
+.losses {
+    color: white !important;
+    background-color: red;
+    border-radius: 5px;
+    padding: 5px;
+
+}
+
+.gains {
+    color: white !important;
+    background-color: green;
+    border-radius: 5px;
+    padding: 5px;
+
+}
+
+.stock-ticker {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+    overflow: hidden;
+    height: 70px;
+    background-color:"#DDDDDD";
+    border: 1px solid #B8B9B9;
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+

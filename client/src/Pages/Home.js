@@ -7,7 +7,9 @@ import Profile from "../Components/Profile";
 import Search from "../Components/Search";
 import SearchResults from "../Components/SearchResults";
 import Category from "../Components/Category";
-import NewsFeed from "../Components/Savednews";
+//import Comment from "../Components/Comment";
+
+//import NewsFeed from "../Components/Savednews";
 
 import articlesApi from '../Utils/articlesApi';
 
@@ -57,19 +59,9 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="container-fluid">
-				{/* Logo  <Logo />*/}
-
-				{/* Profile ***will need to pass the user as a prop */}
 				<Profile user={this.state.user} onLogout={this.props.onLogout} />
-
-				{/* Search Bar */}
 				<Search sendSearchUp={this.searchNews} />
 				<SearchResults articles={this.state.searchResults} saveArticle={this.saveArticle} />
-				{/* Category Drop-Down */}
-				<Category />
-
-				{/* News Feed 
-				<NewsFeed category={this.state.category} articles={this.state.articles} />*/}
 			</div>
 		);
 	}

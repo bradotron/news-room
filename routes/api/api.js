@@ -67,8 +67,11 @@ router.get('/protected', checkToken, function(req, res, next) {
 
 router.get('/articles', function(req, res, next) {
 	//console.log(req);
-	//res.send(200);
-	db.Article.find({}).then(dbArticle => {
+	//res.send(200);//.exec(function(err, docs) { ... });//db.Article.find({})
+	db.Article
+	.find({})
+	.sort({date: 'desc'})
+	.then(dbArticle => {
 		res.status(200).json(dbArticle);
 	})
 	.catch(err => {
@@ -76,6 +79,44 @@ router.get('/articles', function(req, res, next) {
 	});
 });
 
+  // DELETE route for deleting posts
+  router.delete('/articles/:id', function(req, res, next) {
+    db.Article.deleteOne({
+       _id: req.params.id
+	})
+	.then(dbArticle => {
+		console.log(dbArticle);
+      res.status(200).json(dbArticle);
+	})
+	.catch(err => {
+		res.status(400).json(err);
+	})
+	//console.log(req.params);
+  });
+
+
+  // these route adds a comment to an article
+router.post("/comments", function(req, res) {
+	console.log("router.post", req.body);
+	//{ articleId: '5ce343b58f9bbbe893f9d058', comment: "i'm a dumb" }
+	db.Comment.create({
+	  //author: req.body.author,
+	  comment: req.body.comment
+	})
+	  .then(dbComment => {
+		return db.Article.findOneAndUpdate(//req.body.articleId
+		  { _id: req.body.articleId },
+		  { $push: { comments: dbComment._id } },
+		  { new: true }
+		);
+	  })
+	  .then(function(dbArticle) {
+		res.json(dbArticle);
+	  })
+	  .catch(err => {
+		res.json(err);
+	  });
+  });
 
 router.post('/articles', function(req, res, next) {
 	console.log(req.body);

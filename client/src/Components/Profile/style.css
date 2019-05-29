@@ -2,3 +2,29 @@ p.username {
   border:"2px";
   margin-bottom:"2px";
 }
+.profile{
+  width: 100%;
+}
+
+.profile-row {
+  margin-top: 25px;
+}
+
+.back-button {
+  padding: 0px !important;
+  display: flex;
+}
+
+.headline {
+  color: grey;
+  text-align:center;
+  align-self: flex-end;
+}
+
+#logout-btn{
+  width: 125px;
+  float: center;
+  border-radius: 3px;
+  letter-spacing: 1.5px;
+  margin-top: 3px;
+}

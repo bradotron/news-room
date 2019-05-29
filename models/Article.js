@@ -24,6 +24,11 @@ var articleSchema = new Schema({
 	source: {
 		type: String,
 	},
+	
+	date: { 
+		type: Date, 
+		default: Date.now 
+	  },
 
 	comments: [
 		{

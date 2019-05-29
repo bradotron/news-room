@@ -1,4 +1,20 @@
-.select-fix {
-  width: auto;
-  display: inline-block;
+.search-bar{
+  border: solid grey 2px;
+  margin-top: 30px;
+  border-radius: 10px 10px 0 0;
+}
+.category{
+  display: inline-flex;
+  border: 1px solid black;
+  align-self: baseline;
+}
+.category-title{
+  font-size: 16px;
+}
+
+.search-button  {
+  display:flex;
+}
+#search {
+  align-self: baseline;
 }

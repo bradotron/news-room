@@ -14,7 +14,6 @@ class App extends Component {
 		user: {
 			email: "",
 		},
-		
 	};
 
 	onLogin = (user, cb) => {
