@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import './style.css';
 //import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'react-grid-system';
+import articlesApi from '../../Utils/articlesApi';
+
+
 
 class Comment extends Component {
 	state = {
     //author: '',
-		comment: '',
+    comment: '',
+		testComment: [],
   };
   
-
 	onInputChange = e => {
 		this.setState({
 			[e.target.name]: e.target.value,
@@ -31,12 +34,22 @@ class Comment extends Component {
 	validateForm = () => {
 		return this.state.comment !== '' ;
   };
+
+  componentDidMount () {
+    articlesApi.getComment(this.props.article._id).then(comments => {
+      this.setState({commentSaved: comments.data});
+      console.log(this.state.commentSaved);
+    });
+  }
+
+
   
   render() {
 		return (
 
       <Container>
       <form>
+      <Row className="container-fluid"><Col><p>{this.props.commentSaved}</p></Col></Row>
         <Row className="container-fluid">
           <Col xs={12} md={10}>
               <textarea className="form-control"

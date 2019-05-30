@@ -22,9 +22,15 @@ componentDidMount() {
   articlesApi.getsavedArticle().then(articles => {
       this.setState({articles: articles.data});
   });
+  articlesApi.getComment().then(comments => {
+      this.setState({comments: comments.data});
+  });
+  //console.log(this.props.commentSaved);
   this.setState({
     user: this.props.user,
+    //commentSaved: this.props.commentSaved,
   });
+  //console.log(this.props.commentSaved)
 }
 
 deleteSavedArt = id => {
@@ -47,7 +53,7 @@ makeComment = (commentVal, articleId) => {
     })
     .then(res => {
       console.log(commentVal);
-     console.log("article ID: ", articleId);
+      console.log("article ID: ", articleId);
    });
   }
 
@@ -57,7 +63,12 @@ makeComment = (commentVal, articleId) => {
     <div className="container-fluid" >
         {/* Profile ***will need to pass the user as a prop */}
         <Profile user={this.state.user} onLogout={this.props.onLogout} />
-        <Savednews articles={this.state.articles} delete = {this.deleteSavedArt} comment = {this.makeComment} />
+        <Savednews 
+        articles = {this.state.articles} 
+        delete = {this.deleteSavedArt} 
+        comment = {this.makeComment}
+        commentSaved = {this.state.comments}
+        />
       </div>
     );
   }

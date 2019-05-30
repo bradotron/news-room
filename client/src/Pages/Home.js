@@ -20,50 +20,50 @@ class Home extends Component {
 		categorySelector: '',
 		searching: false,
 		searchResults: [],
-	};
+};
 
-	componentDidMount() {
-		this.setState({
+componentDidMount() {
+	this.setState({
 			user: this.props.user,
-		});
-	}
+	});
+}
 
-	searchNews = (search, category) => {
+searchNews = (search, category) => {
+	this.setState({
+		searching: true,
+	});
+
+	axios
+		.get(`/api/scrape/${category}/${search}`)
+		.then(res => {
+			// console.log(res.data);
 		this.setState({
-			searching: true,
+				searchResults: res.data,
+				searching: false,
 		});
+	})
+	.catch(err => console.log(err));
+};
 
-		axios
-			.get(`/api/scrape/${category}/${search}`)
-			.then(res => {
-				// console.log(res.data);
-				this.setState({
-					searchResults: res.data,
-					searching: false,
-				});
-			})
-			.catch(err => console.log(err));
-	};
+saveArticle = article => {
+	articlesApi
+		.postArticle(article)
+		.then(res => {
+			alert('Article saved to the news feed.');
+		})
+		.catch(err => {
+			alert('Error: Article is already in the news feed...NO REPOSTS');
+		});
+};
 
-	saveArticle = article => {
-		articlesApi
-			.postArticle(article)
-			.then(res => {
-				alert('Article saved to the news feed.');
-			})
-			.catch(err => {
-				alert('Error: Article is already in the news feed...NO REPOSTS');
-			});
-	};
-
-	render() {
-		return (
-			<div className="container-fluid">
-				<Profile user={this.state.user} onLogout={this.props.onLogout} />
-				<Search sendSearchUp={this.searchNews} />
-				<SearchResults articles={this.state.searchResults} saveArticle={this.saveArticle} />
-			</div>
-		);
+render() {
+	return (
+		<div className="container-fluid">
+			<Profile user={this.state.user} onLogout={this.props.onLogout} />
+			<Search sendSearchUp={this.searchNews} />
+			<SearchResults articles={this.state.searchResults} saveArticle={this.saveArticle} />
+		</div>
+	);
 	}
 }
 

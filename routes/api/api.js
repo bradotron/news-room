@@ -67,7 +67,6 @@ router.get('/protected', checkToken, function(req, res, next) {
 
 router.get('/articles', function(req, res, next) {
 	//console.log(req);
-	//res.send(200);//.exec(function(err, docs) { ... });//db.Article.find({})
 	db.Article
 	.find({})
 	.sort({date: 'desc'})
@@ -79,15 +78,16 @@ router.get('/articles', function(req, res, next) {
 	});
 });
 
+
   // DELETE route for deleting posts
-  router.delete('/articles/:id', function(req, res, next) {
-    db.Article.deleteOne({
-       _id: req.params.id
-	})
+router.delete('/articles/:id', function(req, res, next) {
+  db.Article.deleteOne({
+  _id: req.params.id
+})
 	.then(dbArticle => {
 		console.log(dbArticle);
-      res.status(200).json(dbArticle);
-	})
+    res.status(200).json(dbArticle);
+})
 	.catch(err => {
 		res.status(400).json(err);
 	})
@@ -95,9 +95,9 @@ router.get('/articles', function(req, res, next) {
   });
 
 
-  // these route adds a comment to an article
+  // these route adds a comment to an article database
 router.post("/comments", function(req, res) {
-	console.log("router.post", req.body);
+	//console.log("router.post", req.body);
 	//{ articleId: '5ce343b58f9bbbe893f9d058', comment: "i'm a dumb" }
 	db.Comment.create({
 	  //author: req.body.author,
@@ -116,8 +116,50 @@ router.post("/comments", function(req, res) {
 	  .catch(err => {
 		res.json(err);
 	  });
-  });
+	});
 
+	/*=========================================================================*/
+router.get('/comments/byArticleId/:id', function(req, res) {
+
+	//id = "5ce8c1e946554a037146088e"
+	//console.log("get comments router: ", req.params.id);
+	db.Article
+	.findOne({
+		_id: req.params.id
+	})
+	.then(dbArticle => {
+		//console.log("comments");
+		//console.log(dbArticle);
+		//console.log(dbArticle.comments)
+		return db.Comment.find({_id: {$in: dbArticle.comments}});
+	})
+	.then(comments => {
+		res.status(200).json(comments);
+	})
+	.catch(err => {
+		res.status(400).json(err);
+	});
+
+});
+
+router.get('/articles', function(req, res, next) {
+	//console.log(req);
+	//res.send(200);//.exec(function(err, docs) { ... });//db.Article.find({})
+	db.Article
+	.find({})
+	.sort({date: 'desc'})
+	.then(dbArticle => {
+		res.status(200).json(dbArticle);
+	})
+	.catch(err => {
+		res.status(400).json(err);
+	});
+});
+//db.comments.find({_id: {$in: [ObjectId('5cef0a12b7b15ec856332935'), ObjectId('5cef0ca2a3a68ee2147b8576')]}})
+//db.comments.find({_id: {$in: }})
+
+	/*=========================================================================*/
+	
 router.post('/articles', function(req, res, next) {
 	console.log(req.body);
 	db.Article.create(req.body)
