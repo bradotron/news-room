@@ -11,27 +11,10 @@ class Register extends Component {
 			password2: '',
 			errors: {},
 		};
+		this.registerCallback = this.registerCallback.bind(this);
 	}
 	onChange = e => {
 		this.setState({ [e.target.id]: e.target.value });
-	};
-
-	submitUser = async user => {
-		const response = await fetch('/api/users/register', {
-			method: 'POST', // or 'PUT'
-			body: JSON.stringify(user), // data can be `string` or {object}!
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		});
-		console.log(response.status);
-		/* const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-    return body;*/
-		console.log(response.json().message);
 	};
 
 	onSubmit = e => {
@@ -43,9 +26,18 @@ class Register extends Component {
 			password2: this.state.password2,
 		};
 
-		console.log(newUser);
-		this.submitUser(newUser);
+		//console.log(newUser);
+		this.props.onRegister(newUser, this.registerCallback);
 	};
+
+	registerCallback = function(res) {
+		if(res.register) {
+			alert(`Thank you for registering ${res.user.name}. Please login.`)
+			this.props.history.push('/login');
+		} else {
+			alert(res.error);
+		}
+	}
 
 	render() {
 		const { errors } = this.state;
