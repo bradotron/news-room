@@ -33,7 +33,7 @@ render() {
 
 				{this.state.expanded &&
 				this.props.articles.map(article => {
-					return <ArticleSaved article={article} delete={this.props.delete} comment = {this.props.comment}/>;
+					return <ArticleSaved article={article} delete={this.props.delete} comment = {this.props.comment} commentSaved = {this.props.comments}/>;
 				})}
 
 			<Col>

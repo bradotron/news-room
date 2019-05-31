@@ -22,12 +22,13 @@ componentDidMount() {
   articlesApi.getsavedArticle().then(articles => {
       this.setState({articles: articles.data});
   });
-  articlesApi.getComment().then(comments => {
-      this.setState({comments: comments.data});
-  });
+  //articlesApi.getComment().then(comments => {
+     // this.setState({comments: comments.data});
+  //});
   //console.log(this.props.commentSaved);
   this.setState({
     user: this.props.user,
+    
     //commentSaved: this.props.commentSaved,
   });
   //console.log(this.props.commentSaved)

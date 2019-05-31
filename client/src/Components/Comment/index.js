@@ -10,7 +10,8 @@ class Comment extends Component {
 	state = {
     //author: '',
     comment: '',
-		testComment: [],
+    commentSaved: [],
+    commentList: [],
   };
   
 	onInputChange = e => {
@@ -27,9 +28,11 @@ class Comment extends Component {
       this.props.comment(this.state.comment, this.props.article._id);
 		} else {
 			//console.log('bad form');
-			alert('A comment requires text.');
-		}
-	};
+      alert('A comment requires text.');
+    }
+    window.location.reload();
+  };
+
 
 	validateForm = () => {
 		return this.state.comment !== '' ;
@@ -38,20 +41,30 @@ class Comment extends Component {
   componentDidMount () {
     articlesApi.getComment(this.props.article._id).then(comments => {
       this.setState({commentSaved: comments.data});
-      console.log(this.state.commentSaved);
+      //this.state.commentSaved.map(data => data.comments)
+      //console.log("test" ,this.state.commentSaved);
+      console.log("test",this.state.commentSaved);
+      console.log(this.state.commentList);
+      
     });
   }
 
-
-  
   render() {
+
+
 		return (
 
       <Container>
       <form>
-      <Row className="container-fluid"><Col><p>{this.props.commentSaved}</p></Col></Row>
-        <Row className="container-fluid">
-          <Col xs={12} md={10}>
+      <Row className = "container-fluid"><Col>
+      <div style={{border:"solid grey 1px", minHeight:"35px", padding:"3px", width:"100%", backgroundColor:"#DDDDDD", borderRadius:"4px"}}>
+      {this.state.commentSaved.map((data, index) => (
+          <p style={{margin:"0 10px 0 10px"}} key={index}>{data.comment}</p>
+      ))}
+      </div>
+      </Col></Row>
+        <Row className="container-fluid" style={{display:"flex"}}>
+          <Col xs={12} md={9} style={{margin:"8px 0 8px 0"}}>
               <textarea className="form-control"
                 type="text"
                 name="comment"
@@ -61,7 +74,7 @@ class Comment extends Component {
                 onChange={this.onInputChange}
               />
           </Col>
-          <Col xs={12} md={2}>
+          <Col xs={12} md={3} style={{margin:"8px 0 8px 0", justifySelf:"left"}}>
             <button
               className="btn btn-small waves-effect waves-light hoverable red accent-3"
               onClick={this.onFormSubmit}
@@ -70,7 +83,6 @@ class Comment extends Component {
                 width: '150px',
                 borderRadius: '3px',
                 letterSpacing: '1.5px',
-                marginTop: '1rem',
               }}
             >
               Comment
