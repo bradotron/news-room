@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 import { Container, Row, Col } from 'react-grid-system';
 import Comment from '../Comment';
-
+//mport articlesApi from "../../Utils/articlesApi";
 
 
 class ArticleSaved extends Component {
@@ -20,6 +20,7 @@ onDeleteClick = function() {
 	this.props.comment(this.comment);
 }*/
 
+
 render() {
 	return (
 <Container>
@@ -31,8 +32,8 @@ render() {
 				<p>No Image available</p>
 			</div>
 		) : (
-			<div className="img-wrapper" style={{border:'solid #D3D3D3 1px', borderRadius:"4px"}}>
-				<img className="h-120" src={this.props.article.image} alt={this.props.title} />
+			<div className="img-wrapper" style = {{border:'solid #D3D3D3 1px', borderRadius:"4px"}}>
+				<img className="h-120" src = {this.props.article.image} alt={this.props.title} />
 			</div>
 		)} 
 		<p>good place for rating?</p>
@@ -48,11 +49,15 @@ render() {
 			Full Article
 		</a>
 	<hr />
-<Comment comment={this.props.comment} article = {this.props.article}/>
+		<Comment 
+			comment = {this.props.comment} 
+			article = {this.props.article} 
+			commentSaved = {this.props.commentSaved} 
+				/>
 			</div>
-			</div>
-			</Row>
-		</Container>
+		</div>
+	</Row>
+</Container>
 		);
 	}
 }

@@ -1,29 +1,44 @@
-p.username {
-  border:"2px";
-  margin-bottom:"2px";
-}
 .profile{
-  width: 100%;
+  margin-top: 100px; 
 }
 
 .profile-row {
-  margin-top: 25px;
+  padding: 10px;
 }
-
-.back-button {
-  padding: 0px !important;
+.back {
   display: flex;
 }
 
+.back-button {
+ align-self: center;
+}
+
+
+.user-info {
+  height: 120px;
+}
+.user-name {
+  float: right;
+  font-size: 18px;
+  font-weight: 600;
+}
+.user-email {
+  float: right;
+}
+.user-button {
+  float: right;
+  justify-content: baseline;
+}
+
 .headline {
+  width: 100%;
   color: grey;
-  text-align:center;
   align-self: flex-end;
 }
 
 #logout-btn{
   width: 125px;
-  float: center;
+  float: right;
   border-radius: 3px;
   letter-spacing: 1.5px;
   margin-top: 3px;

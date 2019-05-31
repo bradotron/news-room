@@ -20,18 +20,30 @@ class Home extends Component {
 		categorySelector: '',
 		searching: false,
 		searchResults: [],
-	};
+};
 
-	componentDidMount() {
-		this.setState({
+componentDidMount() {
+	this.setState({
 			user: this.props.user,
-		});
-	}
+	});
+}
 
-	searchNews = (search, category) => {
+searchNews = (search, category) => {
+	this.setState({
+		searching: true,
+	});
+
+	axios
+		.get(`/api/scrape/${category}/${search}`)
+		.then(res => {
+			// console.log(res.data);
 		this.setState({
-			searching: true,
+				searchResults: res.data,
+				searching: false,
 		});
+	})
+	.catch(err => console.log(err));
+
 
 		axios
 			.get(`/api/scrape/${category}/${search}`)

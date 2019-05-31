@@ -77,12 +77,6 @@ class App extends Component {
 			<div className="container">
 				<Router>
 					<div>
-						<div className="row">
-							<Link to="/">Landing</Link>
-							<Link to="/archive">Archive</Link>
-							<Link to="/login">Login</Link>
-							<Link to="/register">Register</Link>
-						</div>
 
 						<Switch>
 							{auth.loggedIn() ? (

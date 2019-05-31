@@ -35,8 +35,9 @@ class Search extends Component {
 		return (
 			<Container>
 				<form>
-					<Row style={{ border: 'solid grey 2px', marginTop: '30px', borderRadius: '10px 10px 0 0', display:"flex"}}>
-						<Col xs={12} md={5}>
+					<Row className="search-bar" style={{marginTop: '5px', borderRadius: '10px 10px 0 0', display:"flex"}}>
+						<Col xs={12} md={5} className="search-input">
+							<div className="input-text">
 							<label className="my-auto mx-1">
 								Search:
 								<input
@@ -46,9 +47,11 @@ class Search extends Component {
 									onChange={this.onInputChange}
 								/>
 							</label>
+							</div>
 						</Col>
 						<Col xs={12} md={3} className="category">
-							<label className="category-title">
+							<div className="input-catergory">
+							<label id="source" className="category-title">
 								Source:
 								<select 
 									name="category"
@@ -61,10 +64,12 @@ class Search extends Component {
 									{/* <option value="Test">Test</option> */}
 								</select>
 							</label>
+						</div>
 						</Col>
-						<Col xs={12} md={2}>
+						<Col xs={12} md={2} className="search-button">
 							<button
 								className="btn btn-small waves-effect waves-light hoverable red accent-3"
+								id="search"
 								onClick={this.onFormSubmit}
 								type="submit"
 								style={{
@@ -77,8 +82,8 @@ class Search extends Component {
 								Search
 							</button>
 						</Col>
-						<Col xs={12} md={2}>
-							<Link to="/archive" className="btn-flat waves-effect light-blue-text">
+						<Col xs={12} md={2} className="archive-button">
+							<Link to="/archive" id="archive-btn" className="btn-flat waves-effect light-blue-text">
 								<i className="material-icons right">arrow_forward_ios</i>Archive
 							</Link>
 						</Col>

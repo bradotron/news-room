@@ -16,5 +16,11 @@ export default {
   postComment: function(comment) {
     console.log("postComment: ", comment);
     return axios.post('/api/comments', comment);
+  },
+
+  getComment: function(id) {
+    //console.log("get comments for : ", id);
+    return axios.get("/api/comments/byArticleId/"+id);
   }
+
 };
