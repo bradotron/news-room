@@ -35,7 +35,6 @@ class Login extends Component {
 	render() {
 		const { errors } = this.state;
 		return (<div>
-			<Navbar  user='' onLogout=''/>
 			<div className="container">
 				<div style={{ marginTop: '4rem' }} className="row">
 					<div className="col s8 offset-s2" style={{ border: 'solid 0.5px grey', borderRadius: '5px' }}>

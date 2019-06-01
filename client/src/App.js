@@ -8,6 +8,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import NoMatch from './Pages/NoMatch';
 import auth from './Utils/authUtils';
+// recompile you nerd
 
 class App extends Component {
 	state = {

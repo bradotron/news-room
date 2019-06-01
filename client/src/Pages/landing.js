@@ -5,7 +5,6 @@ import Navbar from "../Components/Navbar";
 class Landing extends Component {
 	render() {
 		return (<div>
-			<Navbar  user='' onLogout=''/>
 			<div style={{ height: '50vh' }} className="container-fluid valign-wrapper">
 				<div className="row">
 					<div className="col s12 center-align">
