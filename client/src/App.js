@@ -69,7 +69,7 @@ class App extends Component {
 
 	onLogout = () => {
 		auth.logout();
-		window.location.reload();
+		window.location.href = "/";
 	};
 
 	render() {
