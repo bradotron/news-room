@@ -8,7 +8,7 @@ import Search from "../Components/Search";
 import SearchResults from "../Components/SearchResults";
 import Category from "../Components/Category";
 //import Comment from "../Components/Comment";
-
+import Navbar from "../Components/Navbar";
 //import NewsFeed from "../Components/Savednews";
 
 import articlesApi from '../Utils/articlesApi';
@@ -70,13 +70,15 @@ searchNews = (search, category) => {
 	};
 
 	render() {
-		return (
+		return (<div>
+			<Navbar user={this.state.user} onLogout={this.props.onLogout}/>
 			<div className="container-fluid">
+			
 				<Profile user={this.state.user} onLogout={this.props.onLogout} />
 
 				<Search sendSearchUp={this.searchNews} />
 				<SearchResults articles={this.state.searchResults} saveArticle={this.saveArticle} />
-			</div>
+			</div></div>	
 		);
 	}
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import Navbar from "../Components/Navbar";
 class Login extends Component {
 	constructor() {
 		super();
@@ -34,7 +34,8 @@ class Login extends Component {
 
 	render() {
 		const { errors } = this.state;
-		return (
+		return (<div>
+			<Navbar  user='' onLogout=''/>
 			<div className="container">
 				<div style={{ marginTop: '4rem' }} className="row">
 					<div className="col s8 offset-s2" style={{ border: 'solid 0.5px grey', borderRadius: '5px' }}>
@@ -96,7 +97,7 @@ class Login extends Component {
 						</form>
 					</div>
 				</div>
-			</div>
+			</div></div>
 		);
 	}
 }

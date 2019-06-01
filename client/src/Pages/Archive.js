@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import Profile from "../Components/Profile";
 import Savednews from "../Components/Savednews";
 import Comment from "../Components/Comment";
-
+import Navbar from "../Components/Navbar";
 import articlesApi from '../Utils/articlesApi';
 
 
@@ -63,6 +63,7 @@ makeComment = (commentVal, articleId) => {
     return (
     <div className="container-fluid" >
         {/* Profile ***will need to pass the user as a prop */}
+        <Navbar user={this.state.user} onLogout={this.props.onLogout}/>
         <Profile user={this.state.user} onLogout={this.props.onLogout} />
         <Savednews 
         articles = {this.state.articles} 
